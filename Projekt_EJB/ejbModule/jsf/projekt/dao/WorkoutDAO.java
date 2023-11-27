@@ -35,7 +35,7 @@ public class WorkoutDAO {
 	public List<Workout> getFullList() {
 		List<Workout> list = null;
 
-		Query query = em.createQuery("select w from workout w");
+		Query query = em.createQuery("select w from Workout w");
 
 		try {
 			list = query.getResultList();
@@ -48,35 +48,26 @@ public class WorkoutDAO {
 
 	public List<Workout> getList(Map<String, Object> searchParams) {
 		List<Workout> list = null;
-
-		// 1. Build query string with parameters
 		String select = "select w ";
-		String from = "from workout w ";
+		String from = "from Workout w ";
 		String where = "";
 
-		// search for surname
-		String name_workout = (String) searchParams.get("name_workout");
-		if (name_workout != null) {
+		String nameWorkout = (String) searchParams.get("nameWorkout");
+		if (nameWorkout != null) {
 			if (where.isEmpty()) {
 				where = "where ";
 			} else {
 				where += "and ";
 			}
-			where += "w.name_workout like :name_workout ";
+			where += "w.nameWorkout like :nameWorkout ";
 		}
 		
-
-		// 2. Create query object
 		Query query = em.createQuery(select + from + where);
 
-		// 3. Set configured parameters
-		if (name_workout != null) {
-			query.setParameter("name_workout", name_workout+"%");
+		if (nameWorkout != null) {
+			query.setParameter("nameWorkout", "%"+nameWorkout+"%");
 		}
 
-		// ... other parameters ... 
-
-		// 4. Execute query and retrieve list of Person objects
 		try {
 			list = query.getResultList();
 		} catch (Exception e) {

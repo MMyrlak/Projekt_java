@@ -19,10 +19,9 @@ import jsf.projekt.dao.WorkoutDAO;
 @Named
 @RequestScoped
 public class WorkoutListBB {
-	private static final String PAGE_PERSON_EDIT = "personEdit?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
-	private String name_workout;
+	private String nameWorkout;
 		
 	@Inject
 	ExternalContext extcontext;
@@ -32,15 +31,14 @@ public class WorkoutListBB {
 	
 	@EJB
 	WorkoutDAO workoutDAO;
-		
+
 	public String getNameWorkout() {
-		return name_workout;
+		return nameWorkout;
 	}
 
-	public void setNameWorkout(String name_workout) {
-		this.name_workout = name_workout;
+	public void setNameWorkout(String nameWorkout) {
+		this.nameWorkout = nameWorkout;
 	}
-
 	public List<Workout> getFullList(){
 		return workoutDAO.getFullList();
 	}
@@ -48,10 +46,12 @@ public class WorkoutListBB {
 	public List<Workout> getList(){
 		List<Workout> list = null;
 		Map<String,Object> searchParams = new HashMap<String, Object>();
-		if (name_workout != null && name_workout.length() > 0){
-			searchParams.put("name_workout", name_workout);
+		if (nameWorkout != null && nameWorkout.length() > 0){
+			searchParams.put("nameWorkout", nameWorkout);
 		}
 		list = workoutDAO.getList(searchParams);
 		return list;
 	}
+
+
 }
