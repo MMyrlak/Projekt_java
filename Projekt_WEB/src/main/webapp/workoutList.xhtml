@@ -16,8 +16,8 @@
 		style="margin-bottom: 1em;">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel value="nazwisko:" />
-				<p:inputText value="#{personListBB.surname}" />
+				<h:outputLabel value="Nazwa ćwiczenia: " />
+				<p:inputText value="#{workoutListBB.name_workout}" />
 				<p:commandButton value="Szukaj" update="form-table" />
 			</h:panelGrid>
 		</h:form>
@@ -49,14 +49,6 @@
 				</f:facet>
 				<h:outputText value="#{p.video}">
 				</h:outputText>
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="opcje" />
-				</f:facet>
-				
-				</p:button>
 			</p:column>
 
 		</p:dataTable>
