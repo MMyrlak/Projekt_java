@@ -8,6 +8,44 @@
 		<param-value>Development</param-value>
 	</context-param>
 	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>auto</param-value>
+	</context-param>
+	<filter>
+		<filter-name>SecurityFilter</filter-name>
+		<filter-class>jakarta.faces.simplesecurity.SecurityFilter</filter-class>
+		<init-param>
+			<param-name>noPermitionPage</param-name>
+			<param-value>/Public/loginPage.xhtml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>permissions</param-name>
+			<param-value>
+/jakarta.faces.resource : PUBLIC;
+/resource: PUBLIC;
+/Public : PUBLIC;
+/admin : admin;
+/user : user, admin;
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>invalidateOnRemoteAddressChange</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>invalidateOnRemoteHostChange</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>invalidateOnRemotePortChange</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SecurityFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<context-param>
 		<param-name>jakarta.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
 		<param-value>true</param-value>
 	</context-param>
@@ -24,10 +62,10 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>workoutList.xhtml</welcome-file>
+		<welcome-file>/Public/workoutList.xhtml</welcome-file>
 	</welcome-file-list>
 	<error-page>
 		<exception-type>jakarta.faces.application.ViewExpiredException</exception-type>
-		<location>/workoutList.xhtml</location>
+		<location>/Public/workoutList.xhtml</location>
 	</error-page>
 </web-app>

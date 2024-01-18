@@ -16,8 +16,9 @@ public class WorkoutDAO {
 	@PersistenceContext(unitName = UNIT_NAME)
 	protected EntityManager em;
 
-	public void create( Workout workout) {
+	public Workout create( Workout workout) {
 		em.persist(workout);
+		return workout;
 	}
 
 	public  Workout merge( Workout workout) {
