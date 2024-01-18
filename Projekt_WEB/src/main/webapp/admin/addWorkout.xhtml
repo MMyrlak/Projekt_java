@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta charset="utf-8" />
+	<title>Workout World</title>
+</h:head>
+<h:body style="background-color: #eee; margin: 0.5em;">
+	<p:panel toggleable="true" header="Dodawanie ćwiczenia">
+
+		<h:form enctype="multipart/form-data">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="p-nameWorkout" value="Nazwa ćwiczenia:" />
+				<p:inputText id="p-nameWorkout" value="#{workoutAddBB.nameWorkout}" />
+
+				<h:outputLabel for="p-video" value="Film instruktażowy:" />
+				<p:inputText id="p-video" value="#{workoutAddBB.video}" />
+
+				<h:outputLabel for="p-position" value="Pozycja:" />
+				<p:inputText id="p-position" value="#{workoutAddBB.position}" />
+
+				<h:outputLabel for="p-move" value="Opis:" />
+				<p:inputText id="p-move" value="#{workoutAddBB.move}" />
+
+				<h:outputLabel for="p-photo" value="Photo:" />
+				<p:fileUpload id="p-photo" value="#{workoutAddBB.file}"
+					mode="simple" skinSimple="true" dragDropSupport="false"
+					fileLimit="1" required="true" allowTypes="/(\.|\/)(jpe?g|png)$/" />
+
+				<h:outputLabel for="p-bodyPart" value="Partia ciała:"
+					style="width: 30px; height: 20px" />
+				<p:selectOneListbox id="p-bodyPart" value="#{workoutAddBB.bodyPart}">
+					<f:selectItem itemLabel="Nogi" itemValue="1" />
+					<f:selectItem itemLabel="Plecy" itemValue="2" />
+					<f:selectItem itemLabel="Klatka piersiowa" itemValue="3" />
+					<f:selectItem itemLabel="Barki" itemValue="4" />
+					<f:selectItem itemLabel="Brzuch" itemValue="5" />
+					<f:selectItem itemLabel="Triceps" itemValue="6" />
+					<f:selectItem itemLabel="Biceps" itemValue="7" />
+				</p:selectOneListbox>
+			</h:panelGrid>
+			<p:messages id="msgs" />
+
+			<p:commandButton value="Zapisz" action="#{workoutAddBB.saveData()}"
+				actionListener="#{workoutAddBB.upload}" style="margin-right: 1em;"
+				update="@form"/>
+			
+			<p:button value="Anuluj" outcome="/Public/workoutList" />
+		</h:form>
+
+	</p:panel>
+
+	<p:messages />
+
+</h:body>
+</html>
